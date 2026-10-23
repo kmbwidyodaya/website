@@ -20,6 +20,13 @@
             <a href="#">About</a>
             <a href="#">News & Updates</a>
             <a href="#">Media</a>
+            <button class="menu-btn" onclick="toggleSidebar()" aria-label="Toggle Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            </button>
         </nav>
     </header>
 
@@ -88,8 +95,49 @@
             {% else %}
             <p>Belum ada event mendatang.</p>
             {% endif %}
+            <div class="center-btn">
+                <a href="#" class="btn btn-outline">View All Events</a>
+            </div>
         </section>
     </main>
+<!-- Overlay Latar Belakang Gelap -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
+    <!-- Off-Canvas Sidebar -->
+    <aside class="sidebar" id="sidebarMenu">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">
+                <img src="{% static 'images/logo.svg' %}" alt="Logo" class="sidebar-logo">
+                <span class="sidebar-title">Menu</span>
+            </div>
+            <button class="close-btn" onclick="toggleSidebar()" aria-label="Close Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="sidebar-links">
+            <a href="/home" class="active">Home</a>
+            <a href="#">About</a>
+            <a href="#">News & Updates</a>
+            <a href="#">Media</a>
+            <a href="#">Support</a>
+            <a href="#">Events</a>
+            <a href="#">Contact us</a>
+        </nav>
+    </aside>
+
+    <!-- Script JavaScript Toggle -->
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebarMenu');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+    </script>
+</body>
 </body>
 </html>
