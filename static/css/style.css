@@ -70,7 +70,7 @@ h1, h2, h3, .section-title, .news-title, .event-title {
 }
 
 .nav-links a.active {
-    color: #ff7a00;
+    color: #F47200;
     font-weight: bold;
 }
 
@@ -145,7 +145,7 @@ h1, h2, h3, .section-title, .news-title, .event-title {
 }
 
 .read-more {
-    color: #ff7a00;
+    color: #F47200;
     text-decoration: none;
     font-size: 13px;
     font-weight: bold;
@@ -164,7 +164,7 @@ h1, h2, h3, .section-title, .news-title, .event-title {
     position: absolute;
     top: 0;
     right: 0;
-    background-color: #ff7a00;
+    background-color: #F47200;
     color: white;
     padding: 8px 24px;
     font-size: 13px;
@@ -211,13 +211,13 @@ h1, h2, h3, .section-title, .news-title, .event-title {
 }
 
 .btn-outline {
-    border: 1.5px solid #ff7a00;
-    color: #ff7a00;
+    border: 1.5px solid #F47200;
+    color: #F47200;
     background-color: transparent;
 }
 
 .btn-primary {
-    background-color: #ff7a00;
+    background-color: #F47200;
     color: white;
     border: none;
 }
