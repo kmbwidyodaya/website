@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "kmb_widyodaya/wsgi.py",
+      "src": "website/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     },
@@ -19,7 +19,7 @@
     },
     {
       "src": "(.*)",
-      "dest": "kmb_widyodaya/wsgi.py"
+      "dest": "website/wsgi.py"
     }
   ]
 }
