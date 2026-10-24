@@ -1,0 +1,494 @@
+/* 1. IMPORT FONTS */
+/* Google Font: Fraunces */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&display=swap');
+
+/* Font Lokal: Baker Signet & Myriad (opsional jika ada file font-nya di folder static/fonts) */
+@font-face {
+    font-family: 'Baker Signet';
+    src: url('../fonts/baker-signet.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Myriad';
+    src: url('../fonts/myriad.woff2') format('woff2');
+}
+
+/* 2. BASE STYLES */
+body {
+    font-family: 'Myriad', 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f0f2f5;
+}
+
+h1, h2, h3, .section-title, .news-title, .event-title {
+    font-family: 'Fraunces', serif;
+}
+
+.subheading, .title-card {
+    font-family: 'Baker Signet', serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px 20px 20px 20px;
+}
+
+/* 3. NAVBAR */
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 997;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;            /* Hilangkan padding atas-bawah agar link bisa memenuhi tinggi navbar */
+    height: 60px;               /* Set tinggi tetap navbar */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    width: 35px;
+    height: auto;
+}
+
+.brand-name {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+    height: 100%;               /* Pastikan container menempati penuh tinggi navbar */
+}
+.nav-links a {
+    display: flex;
+    align-items: center;
+    height: 100%;               /* Memenuhi tinggi 100% dari navbar */
+    padding: 0 20px;            /* Jarak kiri-kanan teks di dalam kotak */
+    margin: 0;                  /* Hilangkan margin agar kotak saling menempel rapat */
+    text-decoration: none;
+    color: #333333;
+    font-size: 14px;
+    background-color: transparent;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav-links a.active {
+    color: #F47200;
+    font-weight: bold;
+}
+.nav-links a:hover {
+    background-color: #f2f2f2;
+    color: #111111;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+.nav-links a.active:hover {
+    background-color: #f2f2f2;
+    color: #F47200;
+}
+.menu-btn {
+    height: 100%;
+    padding: 0 18px;
+    margin-left: 10px;                  /* Jarak dari teks 'Media' */
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #222222;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.menu-btn:hover {
+    background-color: #f2f2f2;
+    color: #F47200;
+}
+/* BANNER HOMEPAGE */
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 728px;
+    width: 100%;
+    height: 180px;
+    margin: 10px auto 30px auto; /* Margin top diubah dari 20px ke 10px */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* 5. NEWS & UPDATES SECTION */
+.news-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Card Berita agar seragam dengan Card Event */
+.news-card {
+    border: 1px solid #e0e0e0;     /* Garis tepi tipis */
+    border-radius: 16px;            /* Sudut membulat */
+    padding: 20px;                 /* Jarak isi di dalam kotak */
+    background-color: #ffffff;      /* Warna latar belakang */
+    margin-bottom: 12px;            /* Jarak antar kartu */
+    display: flex;                 /* Memuat tata letak flexbox */
+    gap: 20px;                     /* Jarak antara gambar dan teks */
+    align-items: flex-start;       /* Menjaga tinggi elemen tetap rapi */
+}
+
+/* Container pembungkus poster */
+.image-placeholder {
+    width: 160px !important;            /* Lebar poster */
+    height: 200px !important;           /* Tinggi poster (160px x 1.25 = 200px -> Rasio 4:5) */
+    align-self: flex-start !important; /* Mencegah flexbox meregangkan tinggi wadah */
+    flex-shrink: 0 !important;         /* Mencegah poster menyusut ke samping */
+    overflow: hidden !important;
+    border-radius: 12px;
+    background-color: #f0f0f0;
+}
+
+/* Elemen tag <img> di dalam pembungkus */
+.image-placeholder img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;       /* Memotong gambar dengan rapi tanpa gepeng */
+    object-position: center !important;
+    display: block !important;
+}
+.meta-info {
+    font-size: 12px;
+    color: #666;
+    margin: 0 0 5px 0;
+}
+
+.news-title {
+    font-size: 18px;
+    margin: 0 0 8px 0;
+}
+
+.news-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #444;
+    margin: 0 0 8px 0;
+}
+
+.read-more {
+    color: #F47200;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* 6. EVENT SECTION */
+.event-card {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+.event-card:last-child {
+    margin-bottom: 0;
+}
+.badge-public {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #F47200;
+    color: white;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: bold;
+    border-bottom-left-radius: 16px;
+}
+
+.event-body {
+    display: flex;
+    gap: 25px;
+}
+
+.event-title {
+    font-size: 22px;
+    margin: 0 0 8px 0;
+}
+
+.event-date {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.event-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #444;
+}
+
+.event-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+/* Mengatur agar tanggal dan jam sejajar ke samping */
+.event-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #1a202c;
+}
+
+.event-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.event-meta .event-date,
+.event-meta .event-time {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+/* 7. BUTTONS */
+.btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.btn-outline {
+    border: 1.5px solid #F47200;
+    color: #F47200;
+    background-color: transparent;
+}
+
+.btn-primary {
+    background-color: #F47200;
+    color: white;
+    border: none;
+}
+
+.center-btn {
+    text-align: center;
+    margin: 30px 0;
+}
+/* OVERLAY GELAP */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 998;
+}
+
+.sidebar-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* OFF-CANVAS SIDEBAR BARU */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Sembunyi di luar layar kanan */
+    width: 280px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+}
+
+.sidebar.open {
+    right: 0; /* Meluncur ke dalam layar */
+}
+
+/* SIDEBAR HEADER */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-logo {
+    width: 30px;
+    height: auto;
+}
+
+.sidebar-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #222;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #F47200;
+    transform: rotate(90deg);
+}
+
+/* SIDEBAR MENU LINKS */
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+    background-color: #F47200; /* Latar oranye seperti desain */
+    height: 100%;
+}
+
+.sidebar-links a {
+    padding: 14px 28px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.sidebar-links a:hover,
+.sidebar-links a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left-color: #ffffff;
+    padding-left: 34px; /* Efek geser kanan saat diklik/hover */
+}
+/* Container utama Media */
+.media-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* Grid Layout 3 Kolom */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tepat 3 kolom sejajar */
+    gap: 20px;                             /* Jarak antar kartu */
+}
+
+/* Kartu Media Melebar Horizontal (Rasio 16:9 Landscape) */
+.media-card {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.media-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Gambar Landscape (16:9) */
+.media-image-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 5; /* Rasio landscape horizontal */
+    overflow: hidden;
+    background-color: #e2e8f0;
+}
+
+.media-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.media-content {
+    padding: 16px;
+}
+
+.media-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #1a202c;
+}
+
+.media-description {
+    font-size: 0.875rem;
+    color: #4a5568;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Responsif: Menjadi 1 kolom jika dibuka di layar smartphone */
+@media (max-width: 768px) {
+    .media-grid {
+        grid-template-columns: 1fr;
+    }
+}
