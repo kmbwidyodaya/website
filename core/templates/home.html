@@ -45,13 +45,13 @@
                 <div class="news-card">
                     <div class="image-placeholder">
                         {% if news.image %}
-                            <img src="{{ news.image.url }}" alt="{{ news.title }}">
+                            <img src="{{ news.image }}" alt="{{ news.title }}">
                         {% endif %}
                     </div>
                     <div class="news-content">
                         <p class="meta-info">Posted on {{ news.created_at|date:"d/m/Y" }} by {{ news.author }}</p>
                         <h3 class="news-title">{{ news.title }}</h3>
-                        <p class="news-text">{{ news.content|truncatewords:25 }}</p>
+                        <p class="news-text">{{ news.short_description }}</p></p>
                         <a href="#" class="read-more">Read More</a>
                     </div>
                 </div>
@@ -75,13 +75,13 @@
                 <div class="event-body">
                     <div class="image-placeholder">
                         {% if event.image %}
-                            <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                            <img src="{{ event.image }}" alt="{{ event.title }}">
                         {% endif %}
                     </div>
                     <div class="event-content">
                         <h3 class="event-title">{{ event.title }}</h3>
                         <p class="event-date">📅 {{ event.date|date:"d F Y" }}</p>
-                        <p class="event-text">{{ event.description }}</p>
+                        <p class="event-text">{{ event.short_description }}</p>
                         
                         <div class="event-actions">
                             <a href="#" class="btn btn-outline">View Details</a>

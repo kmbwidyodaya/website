@@ -19,7 +19,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-    background-color: #ffffff;
+    background-color: #f0f2f5;
 }
 
 h1, h2, h3, .section-title, .news-title, .event-title {
@@ -151,27 +151,37 @@ h1, h2, h3, .section-title, .news-title, .event-title {
     margin-bottom: 20px;
 }
 
+/* Card Berita agar seragam dengan Card Event */
 .news-card {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 25px;
+    border: 1px solid #e0e0e0;     /* Garis tepi tipis */
+    border-radius: 16px;            /* Sudut membulat */
+    padding: 20px;                 /* Jarak isi di dalam kotak */
+    background-color: #ffffff;      /* Warna latar belakang */
+    margin-bottom: 20px;            /* Jarak antar kartu */
+    display: flex;                 /* Memuat tata letak flexbox */
+    gap: 20px;                     /* Jarak antara gambar dan teks */
+    align-items: flex-start;       /* Menjaga tinggi elemen tetap rapi */
 }
 
+/* Container pembungkus poster */
 .image-placeholder {
-    width: 200px;
-    height: 120px;
-    background-color: #dcdcdc;
-    flex-shrink: 0;
-    border-radius: 4px;
-    overflow: hidden;
+    width: 160px !important;            /* Lebar poster */
+    height: 200px !important;           /* Tinggi poster (160px x 1.25 = 200px -> Rasio 4:5) */
+    align-self: flex-start !important; /* Mencegah flexbox meregangkan tinggi wadah */
+    flex-shrink: 0 !important;         /* Mencegah poster menyusut ke samping */
+    overflow: hidden !important;
+    border-radius: 12px;
+    background-color: #f0f0f0;
 }
 
+/* Elemen tag <img> di dalam pembungkus */
 .image-placeholder img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;       /* Memotong gambar dengan rapi tanpa gepeng */
+    object-position: center !important;
+    display: block !important;
 }
-
 .meta-info {
     font-size: 12px;
     color: #666;
@@ -199,6 +209,7 @@ h1, h2, h3, .section-title, .news-title, .event-title {
 
 /* 6. EVENT SECTION */
 .event-card {
+    background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 16px;
     padding: 30px;
