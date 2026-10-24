@@ -69,7 +69,7 @@
         <section class="event-section">
             <h2 class="section-title">Events</h2>
             
-            {% if event %}
+        {% for event in events_list %}
             <div class="event-card">
                 <div class="badge-public">Open for Public</div>
                 <div class="event-body">
@@ -80,7 +80,14 @@
                     </div>
                     <div class="event-content">
                         <h3 class="event-title">{{ event.title }}</h3>
-                        <p class="event-date">📅 {{ event.date|date:"d F Y" }}</p>
+                        <!-- Ganti bagian tanggal dan jam menjadi seperti ini -->
+                        <div class="event-meta">
+                            <span class="event-date">📅 {{ event.date|date:"d F Y" }}</span>
+                            
+                            {% if event.time %}
+                            <span class="event-time">⏰ {{ event.time|time:"H:i" }} WIB</span>
+                            {% endif %}
+                        </div>
                         <p class="event-text">{{ event.short_description }}</p>
                         
                         <div class="event-actions">
@@ -92,15 +99,43 @@
                     </div>
                 </div>
             </div>
-            {% else %}
+            {% empty %}
             <p>Belum ada event mendatang.</p>
-            {% endif %}
+            {% endfor %}
             <div class="center-btn">
                 <a href="#" class="btn btn-outline">View All Events</a>
             </div>
         </section>
+        <!-- Section Media -->
+        <section class="media-section">
+            <h2 class="section-title">Media</h2>
+            <div class="media-grid">
+                {% for item in media_list %}
+                <a href="{{ item.link }}" target="_blank" class="media-card">
+                    <div class="media-image-wrapper">
+                        {% if item.image %}
+                            <img src="{{ item.image }}" alt="{{ item.title }}">
+                        {% else %}
+                            <img src="https://via.placeholder.com/600x337?text=Media" alt="No Image">
+                        {% endif %}
+                    </div>
+                    <div class="media-content">
+                        <h3 class="media-title">{{ item.title }}</h3>
+                        {% if item.description %}
+                            <p class="media-description">{{ item.description }}</p>
+                        {% endif %}
+                    </div>
+                </a>
+                {% empty %}
+                    <p>Belum ada media terbaru.</p>
+                {% endfor %}
+            </div>
+                        <div class="center-btn">
+                <a href="#" class="btn btn-outline">View All Media</a>
+            </div>
+        </section>
     </main>
-<!-- Overlay Latar Belakang Gelap -->
+    <!-- Overlay Latar Belakang Gelap -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
     <!-- Off-Canvas Sidebar -->
@@ -128,16 +163,11 @@
             <a href="#">Contact us</a>
         </nav>
     </aside>
+    <!-- Script JavaScript -->
+{% load static %}
 
-    <!-- Script JavaScript Toggle -->
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebarMenu');
-            const overlay = document.getElementById('sidebarOverlay');
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('open');
-        }
-    </script>
-</body>
+<!-- Panggil file JavaScript eksternal -->
+<script src="{% static 'js/main.js' %}"></script>
+    
 </body>
 </html>
