@@ -584,7 +584,7 @@ h1, h2, h3, .section-title, .news-title, .event-title {
         padding: 7px 12px;
         font-size: 11px;
     }
-
+    
     .event-body {
         flex-direction: column;
         gap: 16px;

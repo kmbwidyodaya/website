@@ -72,7 +72,11 @@
             
         {% for event in events_list %}
             <div class="event-card">
-                <div class="badge-public">Open for Public</div>
+                {% if event.is_open_for_public %}
+                    <div class="badge-public">Open for Public</div>
+                {% else %}
+                    <div class="badge-public">Internal Prasmulyan Only</div>
+                {% endif %}
                 <div class="event-body">
                     <div class="image-placeholder">
                         {% if event.image %}
