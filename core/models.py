@@ -31,11 +31,11 @@ class Media(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True, help_text="Deskripsi singkat media (opsional)")
     image = models.URLField(blank=True, null=True, help_text="Direct Link Google Drive gambar")
-    
-    # TAMBAHKAN BARIS INI
-    embed_url = models.URLField(blank=True, null=True, help_text="Link embed YouTube/Instagram/Drive")
-    
-    link = models.URLField(blank=True, null=True, help_text="Link tujuan (YouTube/Instagram/Drive)")
+    embed_url = models.URLField(blank=True, null=True, help_text="Link embed YouTube/Instagram/Drive" \
+    "Ketentuan Pemasangan Embed Link:" \
+    "1. Untuk YouTube, gunakan link embed (contoh: https://www.youtube.com/embed/VIDEO_ID)" \
+    "2. Untuk Instagram, gunakan link embed (contoh: https://www.instagram.com/p/POST_ID/embed/)" \
+    "3. Untuk Google Drive, gunakan link embed (contoh: https://drive.google.com/file/d/FILE_ID/preview)")
     author = models.CharField(max_length=100, default="Admin")
     created_at = models.DateTimeField(auto_now_add=True)
 
