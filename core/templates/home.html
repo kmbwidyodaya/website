@@ -116,7 +116,7 @@
             <h2 class="section-title">Media</h2>
             <div class="media-grid">
                 {% for item in media_list %}
-                <a href="{{ item.link }}" target="_blank" class="media-card">
+                <a href="{% url 'media_detail' item.pk %}" class="media-card">
                     <div class="media-image-wrapper">
                         {% if item.image %}
                             <img src="{{ item.image }}" alt="{{ item.title }}">

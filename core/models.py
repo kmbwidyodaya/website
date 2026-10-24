@@ -30,8 +30,13 @@ class Event(models.Model):
 class Media(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True, help_text="Deskripsi singkat media (opsional)")
-    image = models.URLField(max_length=500, blank=True, null=True, help_text="Direct Link Google Drive gambar")
-    link = models.URLField(max_length=500, help_text="Link tujuan (YouTube/Instagram/Drive)")
+    image = models.URLField(blank=True, null=True, help_text="Direct Link Google Drive gambar")
+    
+    # TAMBAHKAN BARIS INI
+    embed_url = models.URLField(blank=True, null=True, help_text="Link embed YouTube/Instagram/Drive")
+    
+    link = models.URLField(blank=True, null=True, help_text="Link tujuan (YouTube/Instagram/Drive)")
+    author = models.CharField(max_length=100, default="Admin")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

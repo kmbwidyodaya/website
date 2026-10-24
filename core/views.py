@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Media, News, Event
 
@@ -15,3 +15,6 @@ def home(request):
         'media_list': media_list,
     }
     return render(request, 'home.html', context)
+def media_detail(request, pk):
+    media = get_object_or_404(Media, pk=pk)
+    return render(request, 'media_detail.html', {'media': media})

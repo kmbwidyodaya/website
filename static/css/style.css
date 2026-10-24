@@ -628,3 +628,107 @@ h1, h2, h3, .section-title, .news-title, .event-title {
         grid-template-columns: 1fr;
     }
 }
+/* Media Details Custom Styling */
+.detail-page-wrapper {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+    font-family: inherit;
+}
+
+.detail-header-bar {
+    margin-bottom: 20px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    text-decoration: none;
+}
+
+.media-detail-card {
+    background-color: #ffffff;
+    border: 1px solid #c8c8c8;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.media-detail-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 36px;
+}
+
+.media-detail-body {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.media-detail-media-container {
+    flex: 0 0 280px;
+    width: 280px;
+    min-height: 380px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #d9d9d9;
+}
+
+.media-detail-media-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.media-detail-media-container iframe {
+    width: 100%;
+    height: 380px;
+    border: none;
+}
+
+.media-gray-placeholder {
+    width: 100%;
+    height: 380px;
+    background-color: #d9d9d9;
+    border-radius: 16px;
+}
+
+.media-detail-text-container {
+    flex: 1;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #111111;
+}
+
+.media-description-content p {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.media-detail-footer {
+    text-align: right;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #333333;
+    font-weight: 500;
+}
+
+/* Responsive adjustment for screens <= 768px */
+@media (max-width: 768px) {
+    .media-detail-body {
+        flex-direction: column;
+    }
+    .media-detail-media-container {
+        width: 100%;
+        flex: none;
+    }
+}
