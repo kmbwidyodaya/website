@@ -1,7 +1,7 @@
 #!/bin/sh
-set -e
+set -eu
 
 echo "BUILD START"
-python3 -m pip install -r requirements.txt
-python3 manage.py collectstatic --noinput --clear
+mkdir -p staticfiles_build/static
+cp -R static/. staticfiles_build/static/
 echo "BUILD END"

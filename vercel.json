@@ -9,14 +9,14 @@
       "src": "build_files.sh",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "staticfiles_build/static"
+        "distDir": "staticfiles_build"
       }
     }
   ],
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "/$1"
+      "dest": "/static/$1"
     },
     {
       "src": "(.*)",
