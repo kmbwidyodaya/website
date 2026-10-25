@@ -732,3 +732,42 @@ h1, h2, h3, .section-title, .news-title, .event-title {
         flex: none;
     }
 }
+/* Search Box Container */
+.search-wrapper {
+    margin-bottom: 28px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+    background-color: #ffffff;
+    border: 1px solid #c8c8c8;
+    border-radius: 50px; /* Membuat bentuk kapsul/oval */
+    padding: 10px 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.search-icon {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px;
+    min-height: 20px;
+    color: #666666;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    color: #333333;
+    background: transparent;
+}
+
+.search-box input::placeholder {
+    color: #888888;
+}

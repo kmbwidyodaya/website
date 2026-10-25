@@ -15,6 +15,15 @@ def home(request):
         'media_list': media_list,
     }
     return render(request, 'home.html', context)
+def media(request):
+    media_list = Media.objects.all().order_by('-id')
+    return render(request, 'media.html', {'media_list': media_list})
 def media_detail(request, pk):
     media = get_object_or_404(Media, pk=pk)
     return render(request, 'media_detail.html', {'media': media})
+
+
+
+#test media
+def base_test(request):
+    return render(request, 'base.html')

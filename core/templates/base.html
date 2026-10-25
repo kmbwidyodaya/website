@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMB Widyodaya</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/logo.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- Navbar Header -->
+    <header class="navbar">
+        <div class="logo-container">
+            <img src="{% static 'images/logo.svg' %}" alt="Logo KMB Widyodaya" class="logo-img">
+            <span class="brand-name">KMB Widyodaya</span>
+        </div>
+        <nav class="nav-links">
+            <a href="/home" class="active">Home</a>
+            <a href="#">About</a>
+            <a href="#">News & Updates</a>
+            <a href="#">Media</a>
+            <button class="menu-btn" id="menuButton" type="button" onclick="toggleSidebar()" aria-label="Buka menu navigasi" aria-controls="sidebarMenu" aria-expanded="false">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </nav>
+    </header>
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()" aria-hidden="true"></div>
+
+    <!-- Off-Canvas Sidebar -->
+    <aside class="sidebar" id="sidebarMenu" aria-label="Menu navigasi" aria-hidden="true" inert>
+        <div class="sidebar-header">
+            <div class="sidebar-brand">
+                <img src="{% static 'images/logo.svg' %}" alt="Logo" class="sidebar-logo">
+                <span class="sidebar-title">Menu</span>
+            </div>
+            <button class="close-btn" type="button" onclick="toggleSidebar()" aria-label="Tutup menu navigasi">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <nav class="sidebar-links">
+            <a href="/home">Home</a>
+            <a href="#">About</a>
+            <a href="#">News & Updates</a>
+            <a href="#">Media</a>
+            <a href="#">Support</a>
+            <a href="#">Events</a>
+            <a href="#">Contact us</a>
+        </nav>
+    </aside>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
