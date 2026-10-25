@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
         if (noResults) {
-            if (foundResults) {
+            if (query === "" || foundResults) {
                 noResults.style.display = 'none';
             } else {
                 noResults.style.display = 'block';
