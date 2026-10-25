@@ -43,7 +43,7 @@
             
             <div class="news-list">
                 {% for news in news_list %}
-                <div class="news-card">
+                <a href="{{ news.link }}" class="news-card">
                     <div class="image-placeholder">
                         {% if news.image %}
                             <img src="{{ news.image }}" alt="{{ news.title }}">
@@ -53,9 +53,9 @@
                         <p class="meta-info">Posted on {{ news.created_at|date:"d/m/Y" }} by {{ news.author }}</p>
                         <h3 class="news-title">{{ news.title }}</h3>
                         <p class="news-text">{{ news.short_description }}</p>
-                        <a href="#" class="read-more">Read More</a>
+                        <p class="read-more">Click to Read More</p>
                     </div>
-                </div>
+                </a>
                 {% empty %}
                 <p>Belum ada berita terbaru.</p>
                 {% endfor %}
