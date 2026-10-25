@@ -44,7 +44,7 @@
             
             <div class="news-list">
                 {% for news in news_list %}
-                <a href="{{ news.link }}" class="news-card">
+                <a href="{% url 'news_detail' news.pk %}" class="news-card">
                     <div class="image-placeholder">
                         {% if news.image %}
                             <img src="{{ news.image }}" alt="{{ news.title }}">

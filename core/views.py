@@ -25,6 +25,9 @@ def media_detail(request, pk):
 def news(request):
     news_list = News.objects.all().order_by('-id')
     return render(request, 'news.html', {'news_list': news_list})
+def news_detail(request, pk):
+    news = get_object_or_404(News, pk=pk)
+    return render(request, 'news_detail.html', {'news': news})
 
 #test media
 def base_test(request):
