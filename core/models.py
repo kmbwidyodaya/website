@@ -13,6 +13,16 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+    
+class NewsImage(models.Model):
+    news = models.ForeignKey(News, related_name='additional_images', on_delete=models.CASCADE)
+    image_url = models.URLField(
+        verbose_name="Image URL",
+        help_text="Masukkan link gambar tambahan",
+    )
+
+    def __str__(self):
+        return f"Gambar Tambahan - {self.news.title}"
 
 class Event(models.Model):
     title = models.CharField(max_length=200)

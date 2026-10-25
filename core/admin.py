@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import News, Event, Media
+from .models import News, Event, Media, NewsImage
 
 
 class UserAuthorAdminMixin:
@@ -23,10 +23,17 @@ class UserAuthorAdminMixin:
         super().save_model(request, obj, form, change)
 
 
+class NewsImageInline(admin.TabularInline):
+    model = NewsImage
+    extra = 1
+
+
 @admin.register(News)
 class NewsAdmin(UserAuthorAdminMixin, admin.ModelAdmin):
     list_display = ('title', 'author', 'created_at')
-    search_fields = ('title', 'content')
+    search_fields = ('title', 'full_description')
+    inlines = [NewsImageInline]
+
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):

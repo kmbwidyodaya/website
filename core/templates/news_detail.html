@@ -51,8 +51,29 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                 </iframe>
-            {% elif news.image %}
-                <img src="{{ news.image }}" alt="{{ news.title }}">
+            {% elif news.image or news.additional_images.all %}
+                <div class="news-slider">
+                    <!-- Slide Gambar Utama -->
+                    {% if news.image %}
+                        <div class="slide active">
+                            <img src="{{ news.image }}" alt="{{ news.title }}">
+                        </div>
+                    {% endif %}
+
+                    <!-- Slide Gambar Tambahan dari Tabel Foreign Key -->
+                    {% for extra in news.additional_images.all %}
+                        <div class="slide {% if not news.image and forloop.first %}active{% endif %}">
+                            <img src="{{ extra.image_url }}" alt="{{ news.title }}">
+                        </div>
+                    {% endfor %}
+
+                    <!-- Tombol Navigasi Slider (Tampil jika total gambar > 1) -->
+                    {% if news.image and news.additional_images.all or news.additional_images.count > 1 %}
+                        <button class="slider-btn prev-btn" type="button" onclick="moveSlide(-1)">&#10094;</button>
+                        <button class="slider-btn next-btn" type="button" onclick="moveSlide(1)">&#10095;</button>
+                        <div class="slider-dots" id="sliderDots"></div>
+                    {% endif %}
+                </div>
             {% else %}
                 <div class="news-gray-placeholder"></div>
             {% endif %}
@@ -99,5 +120,6 @@
         </nav>
     </aside>
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/newsimages.js' %}"></script>
 </body>
 </html>
