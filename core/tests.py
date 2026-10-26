@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.test import RequestFactory, TestCase
 
 from .admin import MediaAdmin, NewsAdmin
-from .models import Media, News
+from .models import Event, Media, News
 
 
 class AdminAuthorTests(TestCase):
@@ -61,3 +61,19 @@ class AdminAuthorTests(TestCase):
         obj.save_model(request, news, form=None, change=False)
 
         self.assertEqual(news.author, "editor")
+
+
+class EventDetailTests(TestCase):
+    def test_view_details_shows_full_event_description(self):
+        event = Event.objects.create(
+            title="KMB Gathering",
+            short_description="Short version",
+            full_description="Full event description",
+            date="2026-10-29",
+        )
+
+        response = self.client.get(f"/events/{event.pk}/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Full event description")
+        self.assertNotContains(response, "Short version")

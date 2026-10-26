@@ -110,10 +110,10 @@
                             <span class="event-time">⏰ {{ event.time|time:"H:i" }} WIB</span>
                             {% endif %}
                         </div>
-                        <p class="event-text">{{ event.short_description }}</p>
+                        <p class="event-text">{{ event.full_description }}</p>
                         
                         <div class="event-actions">
-                            <a href="#" class="btn btn-outline">View Details</a>
+                            <a href="{% url 'event_detail' event.pk %}" class="btn btn-outline">View Details</a>
                             {% if event.registration_link %}
                                 <a href="{{ event.registration_link }}" target="_blank" class="btn btn-primary">Register Now</a>
                             {% endif %}

@@ -325,6 +325,21 @@ h1, h2, h3, .section-title, .news-title, .event-title {
     gap: 25px;
 }
 
+.event-body .image-placeholder {
+    width: 320px;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    max-width: 100%;
+}
+
+.event-content {
+    display: grid;
+    flex: 1;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    height: 400px;
+    min-width: 0;
+}
+
 .event-title {
     font-size: 22px;
     margin: 0 0 8px 0;
@@ -340,13 +355,66 @@ h1, h2, h3, .section-title, .news-title, .event-title {
     font-size: 13px;
     line-height: 1.5;
     color: #444;
+    display: -webkit-box;
+    min-height: 0;
+    overflow: hidden;
+    white-space: pre-line;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
 }
 
 .event-actions {
     display: flex;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 20px;
 }
+
+.event-actions .btn {
+    flex: 1;
+    text-align: center;
+}
+
+.event-detail-card {
+    background-color: #ffffff;
+    border: 1px solid #c8c8c8;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.event-detail-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+}
+
+.event-detail-image {
+    width: 320px;
+    aspect-ratio: 4 / 5;
+    flex: 0 0 320px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.event-detail-content {
+    flex: 1;
+    min-width: 0;
+    color: #111111;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.event-detail-meta {
+    margin: 0 0 16px;
+    font-weight: 600;
+}
+
+.event-detail-content .btn {
+    display: inline-block;
+    margin-top: 8px;
+}
+
 /* Mengatur agar tanggal dan jam sejajar ke samping */
 .event-meta {
     display: flex;
@@ -684,6 +752,37 @@ h1, h2, h3, .section-title, .news-title, .event-title {
         align-self: center !important;
     }
 
+    .event-content {
+        display: flex;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .event-text {
+        display: -webkit-box;
+        min-height: 0;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+    }
+
+    .event-detail-card {
+        padding: 24px 16px;
+        border-radius: 14px;
+    }
+
+    .event-detail-body {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .event-detail-image {
+        width: 100%;
+        max-width: 320px;
+        flex: none;
+        align-self: center;
+    }
+
     .event-title {
         font-size: 20px;
     }
@@ -695,13 +794,12 @@ h1, h2, h3, .section-title, .news-title, .event-title {
 
     .event-actions {
         flex-wrap: wrap;
-        gap: 10px;
         margin-top: 16px;
+        padding-top: 0;
     }
 
     .event-actions .btn {
         flex: 1 1 130px;
-        text-align: center;
         padding: 10px 14px;
     }
 

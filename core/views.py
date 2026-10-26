@@ -23,6 +23,10 @@ def media_detail(request, pk):
     media = get_object_or_404(Media, pk=pk)
     return render(request, 'media_detail.html', {'media': media})
 
+def event_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'event_detail.html', {'event': event})
+
 def news(request):
     news_list = News.objects.all().order_by('-id')
     return render(request, 'news.html', {'news_list': news_list})
