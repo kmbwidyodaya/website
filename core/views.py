@@ -25,7 +25,19 @@ def media_detail(request, pk):
 
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
-    return render(request, 'event_detail.html', {'event': event})
+    return render(request, 'event_detail.html', {
+        'event': event,
+        'is_past_event': event.date < timezone.localdate(),
+    })
+
+def events(request):
+    today = timezone.localdate()
+    events_list = Event.objects.filter(date__gte=today).order_by('date', 'time')
+    past_events = Event.objects.filter(date__lt=today).order_by('-date', '-time')
+    return render(request, 'events.html', {
+        'events_list': events_list,
+        'past_events': past_events,
+    })
 
 def news(request):
     news_list = News.objects.all().order_by('-id')

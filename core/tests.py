@@ -1,6 +1,9 @@
+from datetime import timedelta
+
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.test import RequestFactory, TestCase
+from django.utils import timezone
 
 from .admin import MediaAdmin, NewsAdmin
 from .models import Event, Media, News
@@ -68,10 +71,75 @@ class EventDetailTests(TestCase):
         event = Event.objects.create(
             title="KMB Gathering",
             full_description="Full event description",
-            date="2026-10-29",
+            date=timezone.localdate() + timedelta(days=3),
         )
 
         response = self.client.get(f"/events/{event.pk}/")
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Full event description")
+
+    def test_past_event_registration_is_disabled(self):
+        event = Event.objects.create(
+            title="Past Gathering",
+            full_description="Past event details",
+            date=timezone.localdate() - timedelta(days=1),
+            registration_link="https://example.com/register",
+        )
+
+        response = self.client.get(f"/events/{event.pk}/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '<button type="button" class="btn btn-disabled" disabled>Registration Closed</button>', html=True)
+        self.assertNotContains(response, 'href="https://example.com/register"')
+
+    def test_events_page_lists_upcoming_events(self):
+        upcoming_event = Event.objects.create(
+            title="Upcoming Gathering",
+            full_description="Gathering details",
+            date=timezone.localdate() + timedelta(days=3),
+            registration_link="https://example.com/upcoming",
+        )
+        response = self.client.get("/events/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, upcoming_event.title)
+        self.assertContains(response, "Gathering details")
+        self.assertContains(response, 'href="https://example.com/upcoming"')
+        self.assertNotContains(response, "There are no Upcoming Events right now")
+        self.assertContains(response, "There are no Past Events right now")
+
+    def test_events_page_shows_empty_messages_when_no_events(self):
+        response = self.client.get("/events/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "There are no Upcoming Events right now")
+        self.assertContains(response, "There are no Past Events right now")
+
+    def test_events_page_lists_past_events_after_upcoming_events(self):
+        upcoming_event = Event.objects.create(
+            title="Upcoming Event",
+            full_description="Upcoming details",
+            date=timezone.localdate() + timedelta(days=3),
+        )
+        past_event = Event.objects.create(
+            title="Past Event",
+            full_description="Past details",
+            date=timezone.localdate() - timedelta(days=3),
+            registration_link="https://example.com/past",
+        )
+
+        response = self.client.get("/events/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, past_event.title)
+        self.assertContains(response, "Past details")
+        self.assertContains(response, '<button type="button" class="btn btn-disabled" disabled>Registration Closed</button>', html=True)
+        self.assertLess(
+            response.content.index(b"Upcoming Event"),
+            response.content.index(b"Past Events"),
+        )
+        self.assertLess(
+            response.content.index(b"Past Events"),
+            response.content.index(b"Past Event</h3>"),
+        )

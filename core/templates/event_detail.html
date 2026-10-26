@@ -32,7 +32,7 @@
 
     <main class="detail-page-wrapper">
         <div class="detail-header-bar">
-            <a href="{% url 'home' %}" class="back-button">&larr; Events</a>
+            <a href="{% url 'home' %}" class="back-button">❮ Event Details</a>
         </div>
         <article class="event-detail-card">
             <h1 class="media-detail-title">{{ event.title }}</h1>
@@ -43,7 +43,9 @@
                 <div class="event-detail-content">
                     <p class="event-detail-meta">{{ event.date|date:"d F Y" }}{% if event.time %} · {{ event.time|time:"H:i" }} WIB{% endif %}</p>
                     <div class="event-detail-description">{{ event.full_description|linebreaks }}</div>
-                    {% if event.registration_link %}
+                    {% if event.registration_link and is_past_event %}
+                        <button type="button" class="btn btn-disabled" disabled>Registration Closed</button>
+                    {% elif event.registration_link %}
                         <a href="{{ event.registration_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Register Now</a>
                     {% endif %}
                 </div>

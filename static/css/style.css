@@ -411,8 +411,19 @@ h1, h2, h3, .section-title, .news-title, .event-title {
 }
 
 .event-detail-content .btn {
-    display: inline-block;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
     margin-top: 8px;
+    text-align: center;
+}
+
+.btn-disabled {
+    border: none;
+    background-color: #a0a0a0;
+    color: #ffffff;
+    cursor: not-allowed;
+    opacity: 0.75;
 }
 
 /* Mengatur agar tanggal dan jam sejajar ke samping */
