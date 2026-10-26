@@ -59,7 +59,7 @@ function startAutoSlide() {
 
     autoSlideTimer = setInterval(() => {
         showSlide(currentSlideIndex + 1);
-    }, 7000);
+    }, 6000);
 }
 
 // Fungsi reset timer agar perpindahan otomatis tidak bentrok saat diklik manual

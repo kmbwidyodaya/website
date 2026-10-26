@@ -35,7 +35,23 @@
     <main class="container">
 <!-- Banner Homepage -->
 <section class="banner">
-    <img src="{% static 'images/homepagebanner.png' %}" alt="Banner KMB Widyodaya" class="banner-img">
+    {% if banners %}
+        <div class="banner-slider">
+            <!-- Loop semua banner aktif -->
+            {% for b in banners %}
+                <div class="banner-slide {% if forloop.first %}active{% endif %}">
+                    <img src="{{ b.image }}" alt="{{ b.title }}" class="banner-img">
+                </div>
+            {% endfor %}
+
+            <!-- Tombol & Dots hanya tampil jika banner lebih dari 1 -->
+            {% if banners.count > 1 %}
+                <button class="banner-btn prev-btn" type="button" onclick="moveBannerSlide(-1)">❮</button>
+                <button class="banner-btn next-btn" type="button" onclick="moveBannerSlide(1)">❯</button>
+                <div class="banner-dots" id="bannerDots"></div>
+            {% endif %}
+        </div>
+    {% endif %}
 </section>
 
         <!-- Section News & Updates -->
@@ -170,6 +186,6 @@
         </nav>
     </aside>
     <script src="{% static 'js/main.js' %}"></script>
-    
+    <script src="{% static 'js/banner.js' %}"></script>
 </body>
 </html>

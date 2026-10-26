@@ -1,15 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from .models import Media, News, Event
+from .models import Media, News, Event, Banner
 
 def home(request):
     news_list = News.objects.all().order_by('-id')[:3]
-    
+    active_banner = Banner.objects.filter(is_active=True).order_by('-updated_at')
     # timezone.now().date() sekarang sudah otomatis berpatokan pada GMT+7 (Asia/Jakarta)
     today = timezone.now().date()
     latest_events = Event.objects.filter(date__gte=today).order_by('date')[:3]
     media_list = Media.objects.all().order_by('-id')[:6]
     context = {
+        'banners': active_banner,
         'news_list': news_list,
         'events_list': latest_events,
         'media_list': media_list,

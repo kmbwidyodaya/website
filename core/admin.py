@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import News, Event, Media, NewsImage
+from .models import News, Event, Media, NewsImage, Banner
 
 
 class UserAuthorAdminMixin:
@@ -44,3 +44,8 @@ class EventAdmin(admin.ModelAdmin):
 class MediaAdmin(UserAuthorAdminMixin, admin.ModelAdmin):
     list_display = ('title', 'author', 'created_at')
     search_fields = ('title', 'description')
+
+@admin.register(Banner)
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ('title', 'is_active', 'updated_at')
+    list_editable = ('is_active',)

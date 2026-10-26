@@ -140,7 +140,78 @@ h1, h2, h3, .section-title, .news-title, .event-title {
     object-fit: cover;
     object-position: center;
 }
+/* Container Banner Slider */
+.banner-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
 
+/* Slide Banner */
+.banner-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0s linear 0.8s;
+}
+
+.banner-slide.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.8s ease-in-out;
+}
+
+/* Tombol Navigasi Banner */
+.banner-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 16px;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.banner-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.banner-btn.prev-btn { left: 16px; }
+.banner-btn.next-btn { right: 16px; }
+
+/* Dots Indicator Banner */
+.banner-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.banner-dots .dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.banner-dots .dot.active {
+    background-color: #ffffff;
+    width: 24px;
+    border-radius: 10px;
+}
 
 /* 5. NEWS & UPDATES SECTION */
 .news-section {
@@ -804,6 +875,8 @@ h1, h2, h3, .section-title, .news-title, .event-title {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .banner-slide,
+    .banner-slide.active,
     .news-slider .slide,
     .news-slider .slide.active {
         transition: none;
