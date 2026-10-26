@@ -26,8 +26,6 @@ class NewsImage(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
-    # Deskripsi singkat untuk kartu event di halaman Home
-    short_description = models.CharField(max_length=255, help_text="Deskripsi ringkas untuk tampilan card di Home")
     # Deskripsi lengkap untuk halaman detail event
     full_description = models.TextField(help_text="Deskripsi detail untuk halaman View Details")
     date = models.DateField()

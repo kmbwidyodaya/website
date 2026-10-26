@@ -67,7 +67,6 @@ class EventDetailTests(TestCase):
     def test_view_details_shows_full_event_description(self):
         event = Event.objects.create(
             title="KMB Gathering",
-            short_description="Short version",
             full_description="Full event description",
             date="2026-10-29",
         )
@@ -76,4 +75,3 @@ class EventDetailTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Full event description")
-        self.assertNotContains(response, "Short version")
