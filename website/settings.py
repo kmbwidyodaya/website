@@ -1,5 +1,7 @@
 import os
 import dj_database_url
+from django.core.exceptions import ImproperlyConfigured
+from django.core.management.utils import get_random_secret_key
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -9,11 +11,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Load environment variables dari file .env
 load_dotenv()
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-wx!#$_^(s9d@ir7b5#29p1@68&#w!zf992)^*%6@t!yy4bfa#k')
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+
+# Never use a predictable key in production.
+SECRET_KEY = os.getenv('SECRET_KEY', '').strip()
+if not SECRET_KEY:
+    if DEBUG:
+        SECRET_KEY = get_random_secret_key()
+    else:
+        raise ImproperlyConfigured('Set the SECRET_KEY environment variable when DEBUG is False.')
 
 ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1', 'localhost']
 
