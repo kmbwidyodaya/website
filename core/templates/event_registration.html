@@ -31,14 +31,34 @@
             border: 0;
         }
 
+        .event-registration-open-link {
+            display: inline-block;
+            margin: 0 0 12px;
+            color: #d35400;
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             .event-registration-page {
                 margin: 24px auto;
                 padding: 0 14px 28px;
             }
 
+            .event-registration-frame {
+                height: 75vh;
+                height: 75dvh;
+                min-height: 480px;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior-y: contain;
+            }
+
             .event-registration-form {
-                height: 2830px;
+                width: 100%;
+                height: 100%;
+                min-height: 100%;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
             }
         }
     </style>
@@ -74,15 +94,23 @@
                 <p>Registrasi untuk event ini sudah ditutup.</p>
             </section>
         {% elif registration_embed_url %}
-            <iframe
-                class="event-registration-form"
-                src="{{ registration_embed_url }}"
-                title="Form registrasi {{ event.title }}"
-                width="740"
-                height="2830"
-                referrerpolicy="strict-origin-when-cross-origin">
-                Form registrasi {{ event.title }}
-            </iframe>
+            {% if registration_direct_url %}
+                <a class="event-registration-open-link" href="{{ registration_direct_url }}" target="_blank" rel="noopener noreferrer">
+                    Buka form langsung di Google Forms
+                </a>
+            {% endif %}
+            <div class="event-registration-frame">
+                <iframe
+                    class="event-registration-form"
+                    src="{{ registration_embed_url }}"
+                    title="Form registrasi {{ event.title }}"
+                    width="740"
+                    height="2830"
+                    scrolling="yes"
+                    referrerpolicy="strict-origin-when-cross-origin">
+                    Form registrasi {{ event.title }}
+                </iframe>
+            </div>
         {% else %}
             <section class="registration-message">
                 <h1>Registrasi Tidak Tersedia</h1>

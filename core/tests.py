@@ -121,7 +121,12 @@ class EventDetailTests(TestCase):
             response,
             'src="https://docs.google.com/forms/d/e/1FAIpQLExampleFormId/viewform?embedded=true"',
         )
+        self.assertContains(
+            response,
+            'href="https://docs.google.com/forms/d/e/1FAIpQLExampleFormId/viewform" target="_blank"',
+        )
         self.assertContains(response, 'class="event-registration-form"')
+        self.assertContains(response, 'class="event-registration-frame"')
         self.assertContains(response, f'href="/events/{event.pk}/"')
 
     def test_registration_page_rejects_non_id_registration_value(self):

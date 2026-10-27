@@ -43,10 +43,16 @@ def event_detail(request, pk):
 
 def event_registration(request, pk):
     event = get_object_or_404(Event, pk=pk)
+    form_id = event.registration_form_id
+    valid_form_id = form_id and re.fullmatch(r'[A-Za-z0-9_-]+', form_id)
     return render(request, 'event_registration.html', {
         'event': event,
         'is_past_event': event.date < timezone.localdate(),
-        'registration_embed_url': _google_form_embed_url(event.registration_form_id),
+        'registration_embed_url': _google_form_embed_url(form_id),
+        'registration_direct_url': (
+            f'https://docs.google.com/forms/d/e/{form_id}/viewform'
+            if valid_form_id else None
+        ),
     })
 
 
