@@ -114,8 +114,8 @@
                         
                         <div class="event-actions">
                             <a href="{% url 'event_detail' event.pk %}" class="btn btn-outline">View Details</a>
-                            {% if event.registration_link %}
-                                <a href="{{ event.registration_link }}" target="_blank" class="btn btn-primary">Register Now</a>
+                            {% if event.registration_form_id %}
+                                <a href="{% url 'event_registration' event.pk %}" class="btn btn-primary">Register Now</a>
                             {% endif %}
                         </div>
                     </div>

@@ -418,6 +418,47 @@ h1, h2, h3, .section-title, .news-title, .event-title {
     text-align: center;
 }
 
+.event-registration-body {
+    min-height: 100vh;
+    background-color: #f0f2f5;
+}
+
+.event-registration-page {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    padding-bottom: 40px;
+}
+
+.event-registration-form {
+    display: block;
+    width: 100%;
+    max-width: 740px;
+    height: 2830px;
+    margin: 0;
+    border: 0;
+}
+
+.registration-message {
+    box-sizing: border-box;
+    width: min(100%, 740px);
+    margin: 24px auto;
+    padding: 28px;
+    border: 1px solid #dadce0;
+    border-top: 10px solid #7b3f3f;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.registration-message h1 {
+    margin-top: 0;
+}
+
+.registration-message .btn {
+    display: inline-block;
+    text-decoration: none;
+}
+
 .btn-disabled {
     border: none;
     background-color: #a0a0a0;

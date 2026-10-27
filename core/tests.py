@@ -84,28 +84,73 @@ class EventDetailTests(TestCase):
             title="Past Gathering",
             full_description="Past event details",
             date=timezone.localdate() - timedelta(days=1),
-            registration_link="https://example.com/register",
+            registration_form_id="1FAIpQLExampleFormId",
         )
 
         response = self.client.get(f"/events/{event.pk}/")
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, '<button type="button" class="btn btn-disabled" disabled>Registration Closed</button>', html=True)
-        self.assertNotContains(response, 'href="https://example.com/register"')
+        self.assertNotContains(response, "Register Now")
+
+    def test_upcoming_event_registration_button_opens_registration_page(self):
+        event = Event.objects.create(
+            title="Upcoming Gathering",
+            full_description="Gathering details",
+            date=timezone.localdate() + timedelta(days=3),
+            registration_form_id="1FAIpQLExampleFormId",
+        )
+
+        response = self.client.get(f"/events/{event.pk}/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, f'href="/events/{event.pk}/regist"')
+
+    def test_registration_page_embeds_google_form(self):
+        event = Event.objects.create(
+            title="Upcoming Gathering",
+            full_description="Gathering details",
+            date=timezone.localdate() + timedelta(days=3),
+            registration_form_id="1FAIpQLExampleFormId",
+        )
+
+        response = self.client.get(f"/events/{event.pk}/regist")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response,
+            'src="https://docs.google.com/forms/d/e/1FAIpQLExampleFormId/viewform?embedded=true"',
+        )
+        self.assertContains(response, 'class="event-registration-form"')
+        self.assertContains(response, f'href="/events/{event.pk}/"')
+
+    def test_registration_page_rejects_non_id_registration_value(self):
+        event = Event.objects.create(
+            title="Upcoming Gathering",
+            full_description="Gathering details",
+            date=timezone.localdate() + timedelta(days=3),
+            registration_form_id="https://example.com/register",
+        )
+
+        response = self.client.get(f"/events/{event.pk}/regist")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Registrasi Tidak Tersedia")
+        self.assertNotContains(response, "https://example.com/register")
 
     def test_events_page_lists_upcoming_events(self):
         upcoming_event = Event.objects.create(
             title="Upcoming Gathering",
             full_description="Gathering details",
             date=timezone.localdate() + timedelta(days=3),
-            registration_link="https://example.com/upcoming",
+            registration_form_id="1FAIpQLExampleFormId",
         )
         response = self.client.get("/events/")
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, upcoming_event.title)
         self.assertContains(response, "Gathering details")
-        self.assertContains(response, 'href="https://example.com/upcoming"')
+        self.assertContains(response, f'href="/events/{upcoming_event.pk}/regist"')
         self.assertNotContains(response, "There are no Upcoming Events right now")
         self.assertContains(response, "There are no Past Events right now")
 
@@ -126,7 +171,7 @@ class EventDetailTests(TestCase):
             title="Past Event",
             full_description="Past details",
             date=timezone.localdate() - timedelta(days=3),
-            registration_link="https://example.com/past",
+            registration_form_id="1FAIpQLExampleFormId",
         )
 
         response = self.client.get("/events/")

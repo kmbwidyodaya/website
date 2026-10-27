@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator
 from django.utils.safestring import mark_safe
 
 class News(models.Model):
@@ -32,7 +33,17 @@ class Event(models.Model):
     time = models.TimeField(null=True, blank=True, help_text="Contoh: 08:00:00 atau biarkan kosong")
     image = models.URLField(max_length=500, blank=True, null=True)
     is_open_for_public = models.BooleanField(default=True)
-    registration_link = models.URLField(blank=True, null=True)
+    registration_form_id = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        validators=[RegexValidator(
+            regex=r'^[A-Za-z0-9_-]+$',
+            message="Masukkan ID Google Form saja, bukan URL.",
+        )],
+        verbose_name="Google Form ID",
+        help_text="Masukkan ID saja, bukan URL. Contoh: 1FAIpQL...",
+    )
 
     def __str__(self):
         return self.title

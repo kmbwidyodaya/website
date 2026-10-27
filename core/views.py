@@ -1,6 +1,16 @@
+import re
+
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Media, News, Event, Banner
+
+
+def _google_form_embed_url(form_id):
+    if not form_id or not re.fullmatch(r'[A-Za-z0-9_-]+', form_id):
+        return None
+
+    return f'https://docs.google.com/forms/d/e/{form_id}/viewform?embedded=true'
+
 
 def home(request):
     news_list = News.objects.all().order_by('-id')[:3]
@@ -29,6 +39,16 @@ def event_detail(request, pk):
         'event': event,
         'is_past_event': event.date < timezone.localdate(),
     })
+
+
+def event_registration(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'event_registration.html', {
+        'event': event,
+        'is_past_event': event.date < timezone.localdate(),
+        'registration_embed_url': _google_form_embed_url(event.registration_form_id),
+    })
+
 
 def events(request):
     today = timezone.localdate()

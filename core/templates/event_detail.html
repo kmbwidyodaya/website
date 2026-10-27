@@ -43,10 +43,10 @@
                 <div class="event-detail-content">
                     <p class="event-detail-meta">{{ event.date|date:"d F Y" }}{% if event.time %} · {{ event.time|time:"H:i" }} WIB{% endif %}</p>
                     <div class="event-detail-description">{{ event.full_description|linebreaks }}</div>
-                    {% if event.registration_link and is_past_event %}
+                    {% if event.registration_form_id and is_past_event %}
                         <button type="button" class="btn btn-disabled" disabled>Registration Closed</button>
-                    {% elif event.registration_link %}
-                        <a href="{{ event.registration_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Register Now</a>
+                    {% elif event.registration_form_id %}
+                        <a href="{% url 'event_registration' event.pk %}" class="btn btn-primary">Register Now</a>
                     {% endif %}
                 </div>
             </div>
